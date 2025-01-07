@@ -37,14 +37,17 @@ int main(){
     scanf("%d",&choice);
     switch(choice){
         case 1:
+            printf("InOrder Traversal is : ");
             inOrder(root);
             printf("\n");
             break;
         case 2:
+            printf("PreOrder Traversal is : ");
             preOrder(root);
             printf("\n");
             break;
         case 3:
+            printf("PostOrder Traversal is : ");
             postOrder(root);
             printf("\n");
             break;
