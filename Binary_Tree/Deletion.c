@@ -113,4 +113,5 @@ int main(){
     printf("\nPostOrder is : ");
     postOrder(root);
     printf("\n");
+    return 0;
 }
