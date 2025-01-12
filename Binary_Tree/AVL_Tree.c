@@ -39,8 +39,8 @@ struct node *leftRotate(struct node *root){
     struct node *temp=root->right;
     root->right=temp->left;
     temp->left=root;
-    temp->height=getMax(getHeight(temp->left),getHeight(temp->right)+1);
-    root->height=getMax(getHeight(root->left),getHeight(root->right)+1);
+    root->height=getMax(getHeight(root->left),getHeight(root->right))+1;
+    temp->height=getMax(getHeight(temp->left),getHeight(temp->right))+1;
     return temp;
 }
 
@@ -51,8 +51,8 @@ struct node *rightRotate(struct node *root){
     struct node *temp=root->left;
     root->left=temp->right;
     temp->right=root;
-    temp->height=getMax(getHeight(temp->left),getHeight(temp->right))+1;
     root->height=getMax(getHeight(root->left),getHeight(root->right))+1;
+    temp->height=getMax(getHeight(temp->left),getHeight(temp->right))+1;
     return temp;
 }
 
@@ -64,27 +64,29 @@ struct node *insert(struct node *root,int data){
         root->left=insert(root->left,data);
     }else if(data>root->data){
         root->right=insert(root->right,data);
+    }else{
+        return root;
     }
 
     root->height=1+getMax(getHeight(root->left),getHeight(root->right));
     int balanceFactor=getBalanceFactor(root);
     
     if(balanceFactor > 1 && data < root->left->data){
-        root=rightRotate(root);
+        return rightRotate(root);
     }
     
     if(balanceFactor < -1 && data>root->right->data){
-        root=leftRotate(root);
+        return leftRotate(root);
     }
     
     if(balanceFactor > 1 && data >root->left->data){
         root->left=leftRotate(root->left);
-        root=rightRotate(root);
+        return rightRotate(root);
     }
     
     if(balanceFactor < -1 && data < root->right->data){
         root->right=rightRotate(root->right);
-        root=leftRotate(root);
+        return leftRotate(root);
     }
     
     return root;
