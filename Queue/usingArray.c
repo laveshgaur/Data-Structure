@@ -18,6 +18,11 @@ int isFull(){
         return 0;
     }
 }
+void shift(int rear){
+    for(int i=0;i<rear;i++){
+        queue[i]=queue[i+1];
+    }
+}
 int push(int data){
     if(isEmpty()){
         front++;
@@ -37,20 +42,20 @@ int pop(){
     if(isEmpty()){
         printf("Queue Underflow\n");
     }
-    else if(front==rear){
-        front=-1;
-        rear=-1;
-        printf("Element popped\n");
-    }
     else{
-        front++;
+        shift(rear);
         printf("Element popped\n");
+        rear--;
+    }
+    if(rear==-1){
+        front--;
     }
 }
 int main(){
     while(1){
         int choice;
-        printf("1. Push\n2. Pop\nEnter your choice : ");
+        printf("Queue size is 10\n");
+        printf("1. Push\n2. Pop\n3. Print queue\nEnter your choice : ");
         scanf("%d",&choice);
         switch(choice){
             case 1 :
@@ -58,11 +63,18 @@ int main(){
             printf("Enter a value : ");
             scanf("%d",&data);
             push(data);
-            printf("%d %d \n",front,rear);
+            printf("front is %d rear is %d \n",front,rear);
             break;
             case 2 :
             pop();
-            break; 
+            printf("front is %d rear is %d \n",front,rear);
+            break;
+            case 3 :
+            for(int i=0;i<=rear;i++){
+                printf("%d ",queue[i]);
+            }
+            printf("\n");
+            break;
             default :
             printf("Enter valid input\n");           
         }
