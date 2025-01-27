@@ -13,15 +13,15 @@ struct Graph {
 
 struct Graph *createGraph(struct Graph *graph,int vertices){
     graph->vertices=vertices;
-    graph->adjacency=(struct node **)malloc(sizeof(struct node*)*graph->vertices);
-    for(int i=0;i<graph->vertices;i++)
+    graph->adjacency=(struct node **)malloc(sizeof(struct node*)*(graph->vertices+1));
+    for(int i=0;i<graph->vertices+1;i++)
     graph->adjacency[i]=NULL;
     return graph;
 }
 
-struct node *createNode(int des){
+struct node *createNode(int vertex){
     struct node *newnode=(struct node *)malloc(sizeof(struct node));
-    newnode->vertex=des;
+    newnode->vertex=vertex;
     newnode->next=NULL;
     return newnode;
 }
@@ -39,28 +39,26 @@ struct Graph *addEdge(struct Graph *graph,int src,int des){
 }
 
 void BFS(struct Graph *graph,int start){
-    int visited[graph->vertices+1];
+    int visited[graph->vertices];
    
-    for(int i=0;i<graph->vertices+1;i++){
+    for(int i=0;i<graph->vertices;i++){
         visited[i]=0;
     }
 
     int queue[100];
     int front=0,rear=0;
     
-    visited[start]=1;
+    visited[start-1]=1;
     queue[rear++]=start;
     
     printf("BFS is : ");
     printf("%d ",start);
     while(front<rear){
-        
-        int current=queue[front++];
-        struct node *temp=graph->adjacency[current];
+        struct node *temp=graph->adjacency[queue[front++]];
         
         while(temp){
-            if(!visited[temp->vertex]){
-                visited[temp->vertex]=1;
+            if(!visited[temp->vertex-1]){
+                visited[temp->vertex-1]=1;
                 printf("%d ",temp->vertex);
                 queue[rear++]=temp->vertex;
             }
