@@ -49,7 +49,7 @@ void printGraph(struct Graph *graph,int vertices){
 }
 
 int main(){
-    struct Graph *graph;
+    struct Graph *graph = (struct Graph *)malloc(sizeof(struct Graph));
     int vertices;
     printf("Enter number of vertices : ");
     scanf("%d",&vertices);
