@@ -11,7 +11,8 @@ struct Graph {
     struct node **adjacency;
 };
 
-struct Graph *createGraph(struct Graph *graph,int vertices){
+struct Graph *createGraph(int vertices){
+    struct Graph *graph = (struct Graph *)malloc(sizeof(struct Graph));
     graph->vertices=vertices;
     graph->adjacency=(struct node **)malloc(sizeof(struct node*)*(graph->vertices+1));
     for(int i=0;i<graph->vertices+1;i++)
@@ -72,7 +73,7 @@ int main(){
     printf("Enter number of edges of graph : ");
     scanf("%d",&edges);
     
-    graph=createGraph(graph,vertices);
+    graph=createGraph(vertices);
     
     for(int i=0;i<edges;i++){
         int u,v;
