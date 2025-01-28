@@ -39,7 +39,7 @@ struct Graph *addEdge(struct Graph *graph,int src,int des){
 }
 
 void BFS(struct Graph *graph,int start){
-    int *visited=(int*)calloc(graph->vertices,sizeof(int*));
+    int *visited=(int*)calloc(graph->vertices,sizeof(int));
 
     int queue[100];
     int front=0,rear=0;
