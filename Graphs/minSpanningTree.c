@@ -42,7 +42,7 @@ struct Graph *addEdge(struct Graph *graph,int src,int des,int weight){
 }
 
 void primsMST(struct Graph *graph){
-    
+     
 }
 
 int main(){
