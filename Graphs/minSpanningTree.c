@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
-
+#include<limits.h>
 struct node {
     int vertex;
-    int cost;
+    int weight;
     struct node *next;
 };
 
@@ -24,7 +24,7 @@ struct Graph *createGraph(int vertices){
 struct node *createNode(int vertex,int weight){
     struct node *newnode=(struct node *)malloc(sizeof(struct node));
     newnode->vertex=vertex;
-    newnode->cost=weight;
+    newnode->weight=weight;
     newnode->next=NULL;
     return newnode;
 }
@@ -40,9 +40,49 @@ struct Graph *addEdge(struct Graph *graph,int src,int des,int weight){
 
     return graph;
 }
+int minKey(int *key,int *minSPT,int v){
+    int min=-1;
+    for(int i=0;i<v;i++){
+        if((minSPT[i]==0) && (min==-1 || key[i]<key[min])){
+            min=i;
+        }
+    }
+    return min;
+}
 
 void primsMST(struct Graph *graph){
-     
+    int V=graph->vertices+1;
+    int parent[V];
+    int key[V];
+    int minSPT[V];
+
+    for(int i=0;i<V;i++){
+        key[i]=INT_MAX;
+        minSPT[i]=0;
+    }
+    key[1]=0;
+    parent[1]=-1;
+    
+    for(int i=1;i<V-1;i++){
+        int u=minKey(key,minSPT,V);
+        minSPT[u]=1;
+        struct node *temp=graph->adjacency[u];
+        while(temp){
+            int v=temp->vertex;
+            int weight=temp->weight;
+            if(minSPT[v]==0 && weight<key[v]){
+                key[v]=weight;
+                parent[v]=u;
+            }
+            temp=temp->next;
+        }
+    }
+    int weight=0;
+    for(int i=2;i<V;i++){
+        printf("%d----%d   %d\n",parent[i],i,key[i]);
+        weight+=key[i];
+    }
+    printf("Total weight = %d \n",weight);
 }
 
 int main(){
@@ -54,14 +94,13 @@ int main(){
     scanf("%d",&edges);
     
     graph=createGraph(vertices);
-
     for(int i=0;i<edges;i++){
         int u,v,weight;
         printf("Enter source destination and weight of %d edge : ",i+1);
         scanf("%d %d %d",&u,&v,&weight);
         graph=addEdge(graph,u,v,weight);
     }
-
+    primsMST(graph);
 
     return 0;
 }
