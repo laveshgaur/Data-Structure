@@ -11,4 +11,3 @@ struct Graph{
     int vertices;
     struct node **adjacency;
 };
-
