@@ -17,7 +17,7 @@ int main(){
     printf("Enter length of array : ");
     scanf("%d",&n);
     int arr[n];
-    int sum;
+    int sum=0;
     printf("Enter elements of array : ");
     for(int i=0;i<n;i++){
         int data;
