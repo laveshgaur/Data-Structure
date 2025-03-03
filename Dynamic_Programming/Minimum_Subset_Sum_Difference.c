@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<limits.h>
-void initialize(int arr[],int sum,int n,int dp[n+1][sum+1]){
+void createDP(int arr[],int sum,int n,int dp[n+1][sum+1]){
     
     for(int j=0;j<sum+1;j++){
         dp[0][j]=0;
@@ -35,7 +35,7 @@ int main(){
     }
 
     int dp[n+1][sum+1];
-    initialize(arr,sum,n,dp);
+    createDP(arr,sum,n,dp);
     int min=INT_MAX;
     for(int i=0;i<sum/2+1;i++){
         if(dp[n][i]){
