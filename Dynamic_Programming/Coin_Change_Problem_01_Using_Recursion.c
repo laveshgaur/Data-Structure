@@ -1,9 +1,5 @@
 #include<stdio.h>
 
-int max(int a,int b){
-    return a>b ? a:b;
-}
-
 int ways(int coin[],int n,int sum){
     if(sum==0){
         return 1;
