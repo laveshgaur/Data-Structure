@@ -32,7 +32,7 @@ int main(){
     int length;
     printf("Enter length of rod : ");
     scanf("%d",&length);
-    printf("%d\n",knapsack(lengthArr,price,n,length));
+    printf("Max Profit is %d\n",knapsack(lengthArr,price,n,length));
 
     return 0;
 }
