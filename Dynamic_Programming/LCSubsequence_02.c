@@ -5,7 +5,7 @@ int max(int a,int b){
     return a > b ? a : b ;
 }
 
-int LCS(char *str1,int n,char *str2,int m,int dp[n][m]){
+int LCS(char *str1,int n,char *str2,int m,int dp[][m+1]){
     if(n==0 || m==0){
         return 0;
     }
