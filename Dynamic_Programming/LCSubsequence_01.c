@@ -30,6 +30,7 @@ int main(){
         for(int i=0;i<len1;i++){
             scanf("%c",&str1[i]);
         }
+        getchar();
         printf("Enter string 2 : ");
         for(int i=0;i<len2;i++){
             scanf("%c",&str2[i]);
