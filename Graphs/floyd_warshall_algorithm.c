@@ -4,7 +4,7 @@
 
 
 int main() {
-    printf("Directed Graph\n");
+    printf("Directed Graph\nVertex starts from 0\n");
     int v,e;
     printf("Enter number of vertices : ");
     scanf("%d",&v);
