@@ -22,6 +22,10 @@ int main(){
     int n;
     printf("Enter length of string : ");
     scanf("%d",&n);
+    if(n <= 0){
+        printf("Enter Invalid Input\n");
+        return 0;
+    }
     char str[n];
     getchar();
     printf("Enter string : ");
